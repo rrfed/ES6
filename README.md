@@ -75,5 +75,12 @@ function f() { console.log('I am outside!'); }
 
 ## const
 - 用于声明一个只读的变量，一旦声明就不能被改变
-> const的值
+> const的值不能被改变值针对基本数据类型比较有保证，因为值就保存在变量所指向的内存地址。如果是对象类型，const只能保证指向的内存地址指向不会发生变化，地址内的值发生变化了则对const不起效，行如：
+```
+const a = {
+  name:"stepday",
+  sex:"男"
+};
+
+```
 
