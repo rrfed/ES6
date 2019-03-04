@@ -82,5 +82,10 @@ const a = {
   sex:"男"
 };
 
+改变a的内存指向：
+a = {};  //报错 Uncaught TypeError: Assignment to constant variable.
+
+如果改变内存空间内的值：
+a.name = "FED";//不报错 应为没有改变指针的指向
 ```
 
