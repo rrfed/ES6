@@ -41,3 +41,39 @@ for (let i = 0; i < 3; i++) {
 ```
 - 输出了三个abc，循环变量i和内部变量i不在同一个作用域，不然会出现报错。
 
+> 如果区块中存在let和const命令，这个区块对这些命令声明的变量从一开始就形成了封闭作用域，凡是在声明之前使用这些变量就会报错，这种语法称之为：”暂时性死区”
+
+> 允许在块级作用域内声明函数
+```
+// 浏览器的 ES6 环境
+function f() { console.log('I am outside!'); }
+
+(function () {
+  if (false) {
+    // 重复声明一次函数f
+    function f() { console.log('I am inside!'); }
+  }
+
+  f();
+}());
+// Uncaught TypeError: f is not a function
+```
+- 这里为什么会报错呢？因为在块级作用域内有重新定义了f函数，相当于在执行if之前f已经变成了undefined了的，相当于执行了下列代码：
+```
+// 浏览器的 ES6 环境
+function f() { console.log('I am outside!'); }
+(function () {
+  var f = undefined;
+  if (false) {
+    function f() { console.log('I am inside!'); }
+  }
+
+  f();
+}());
+// Uncaught TypeError: f is not a function
+```
+
+## const
+- 用于声明一个只读的变量，一旦声明就不能被改变
+> const的值
+
